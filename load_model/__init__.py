@@ -1,1 +1,1 @@
-name = "load_model"
+from .load_model import *
