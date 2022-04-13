@@ -2,7 +2,7 @@ import torch
 import torchvision.models as models
 import matplotlib.pyplot as plt
 from torchvision import transforms 
-from load_SIN_model import load_SIN_model
+# from load_SIN_model import load_SIN_model
 
 def load_model(model_type):
   if model_type=="resnet50_trained_on_SIN" or model_type=="resnet50_trained_on_SIN_and_IN" or model_type=="resnet50_trained_on_SIN_and_IN_then_finetuned_on_IN":
