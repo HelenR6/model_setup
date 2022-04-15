@@ -7,7 +7,8 @@ from torchvision import transforms
 def load_model(model_type):
   if model_type=="resnext101_augmix_and_deepaugment":
     state_dict = torch.load('/content/gdrive/MyDrive/model_checkpoints/resnext101_augmix_and_deepaugment.pth.tar',map_location="cpu")['state_dict']
-    resnet=models.resnet50(pretrained=False)
+    resnet=models.resnext101_32x8d(pretrained=False)
+#     resnet=models.resnet50(pretrained=False)
     for k in list(state_dict.keys()):
         if k.startswith('module'):
             state_dict[k[len("module."):]] = state_dict[k]
