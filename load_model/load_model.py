@@ -5,6 +5,23 @@ from torchvision import transforms
 # from load_SIN_model import load_SIN_model
 
 def load_model(model_type):
+  if model_type=="resnext101_augmix_and_deepaugment":
+    state_dict = torch.load('/content/gdrive/MyDrive/model_checkpoints/resnext101_augmix_and_deepaugment.pth.tar',map_location="cpu")['state_dict']
+    resnet=models.resnet50(pretrained=False)
+    for k in list(state_dict.keys()):
+        if k.startswith('module'):
+            state_dict[k[len("module."):]] = state_dict[k]
+        del state_dict[k]
+    resnet.load_state_dict(state_dict)
+    preprocess = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(
+    mean=[0.485, 0.456, 0.406],
+    std=[0.229, 0.224, 0.225])
+    ])
+    
   if model_type=="RN50_deepAugment":
     state_dict = torch.load('/content/gdrive/MyDrive/model_checkpoints/deepaugment.pth.tar',map_location="cpu")['state_dict']
     resnet=models.resnet50(pretrained=False)
