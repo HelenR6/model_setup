@@ -345,7 +345,7 @@ def load_model(model_type):
 
   if model_type=="alexnet":
     # load checkpoint for st alexnet
-    alexnet=models.alexnet(pretrained=True)
+    resnet=models.alexnet(pretrained=True)
     #preprocess for alexnet
     preprocess = transforms.Compose([
     transforms.Resize(256),
