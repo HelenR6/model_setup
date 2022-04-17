@@ -99,7 +99,7 @@ def load_model(model_type):
     ])
   if model_type=="moco18":
     # load checkpoints of moco
-    state_dict = torch.load('/content/gdrive/MyDrive/moco/moco18.pth.tar',map_location=torch.device('cpu'))['state_dict']
+    state_dict = torch.load('/content/gdrive/MyDrive/moco18.pth.tar',map_location=torch.device('cpu'))['state_dict']
     resnet = models.resnet18(pretrained=False)
     for k in list(state_dict.keys()):
         if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
