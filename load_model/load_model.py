@@ -126,13 +126,24 @@ def load_model(model_type):
 #             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
 #         del state_dict[k]
 #     msg = resnet.load_state_dict(state_dict, strict=False)
-    state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco50/moco_200.pth.tar',map_location=torch.device('cpu'))['state_dict']
-    resnet = models.resnet50(pretrained=False)
+#     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco50/moco_200.pth.tar',map_location=torch.device('cpu'))['state_dict']
+#     resnet = models.resnet50(pretrained=False)
+#     for k in list(state_dict.keys()):
+#         if k.startswith('module.encoder_q') :
+#             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+#         del state_dict[k]
+#     msg = resnet.load_state_dict(state_dict, strict=False)
+
+
+    resnet=models.resnet50(pretrained=False)
+    checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/moco_lincls.pth.tar',map_location=torch.device('cpu') )
+    state_dict=checkpoint['state_dict']
     for k in list(state_dict.keys()):
-        if k.startswith('module.encoder_q') :
-            state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+        if k.startswith('module.encoder.') :
+
+            state_dict[k[len('module.encoder.'):]] = state_dict[k]
         del state_dict[k]
-    msg = resnet.load_state_dict(state_dict, strict=False)
+    resnet.load_state_dict(state_dict)
     
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
