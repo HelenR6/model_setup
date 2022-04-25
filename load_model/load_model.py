@@ -478,7 +478,7 @@ def load_model(model_type):
     model_epoch=model_type.split('_')[1]
     # load checkpoints of moco
 #     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/rn101/rn101_epoch{model_epoch}.pth.tar',map_location=torch.device('cpu'))['state_dict']
-    state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/rn101/model_epoch90.pth.tar',map_location=torch.device('cpu'))['state_dict']
+    state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/rn101/model_epoch{model_epoch}.pth.tar',map_location=torch.device('cpu'))['state_dict']
   
 #     for k in list(state_dict.keys()):
 #         if k.startswith('module.) and not k.startswith('module.encoder_q.fc') :
