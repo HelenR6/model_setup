@@ -129,7 +129,7 @@ def load_model(model_type):
     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco50/moco_200.pth.tar',map_location=torch.device('cpu'))['state_dict']
     resnet = models.resnet50(pretrained=False)
     for k in list(state_dict.keys()):
-        if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
+        if k.startswith('module.encoder_q') :
             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=False)
