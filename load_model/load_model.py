@@ -119,13 +119,21 @@ def load_model(model_type):
 
   if model_type=="moco":
     # load checkpoints of moco
-    state_dict = torch.load('/content/gdrive/MyDrive/moco/moco_v1_200ep_pretrain.pth.tar',map_location=torch.device('cpu'))['state_dict']
+#     state_dict = torch.load('/content/gdrive/MyDrive/moco/moco_v1_200ep_pretrain.pth.tar',map_location=torch.device('cpu'))['state_dict']
+#     resnet = models.resnet50(pretrained=False)
+#     for k in list(state_dict.keys()):
+#         if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
+#             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+#         del state_dict[k]
+#     msg = resnet.load_state_dict(state_dict, strict=False)
+    state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco50/moco_200.pth.tar',map_location=torch.device('cpu'))['state_dict']
     resnet = models.resnet50(pretrained=False)
     for k in list(state_dict.keys()):
         if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=False)
+    
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
@@ -142,7 +150,7 @@ def load_model(model_type):
     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco101/moco_{epoch_num}.pth.tar',map_location=torch.device('cpu'))['state_dict']
     resnet = models.resnet101(pretrained=False)
     for k in list(state_dict.keys()):
-        if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
+        if k.startswith('module.encoder_q'):
             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=False)
@@ -166,6 +174,7 @@ def load_model(model_type):
             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=False)
+
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
@@ -459,10 +468,10 @@ def load_model(model_type):
     # load checkpoints of moco
     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/rn101/rn101_epoch{model_epoch}.pth.tar',map_location=torch.device('cpu'))['state_dict']
     
-    for k in list(state_dict.keys()):
-        if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
-            state_dict[k[len("module.encoder_q."):]] = state_dict[k]
-        del state_dict[k]
+#     for k in list(state_dict.keys()):
+#         if k.startswith('module.) and not k.startswith('module.encoder_q.fc') :
+#             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+#         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=False)
     preprocess = transforms.Compose([
     transforms.Resize(256),
