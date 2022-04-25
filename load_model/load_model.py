@@ -139,9 +139,9 @@ def load_model(model_type):
     checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/moco_lincls.pth.tar',map_location=torch.device('cpu') )
     state_dict=checkpoint['state_dict']
     for k in list(state_dict.keys()):
-        if k.startswith('module.encoder.') :
+        if k.startswith('module.') :
 
-            state_dict[k[len('module.encoder.'):]] = state_dict[k]
+            state_dict[k[len('module.'):]] = state_dict[k]
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     
