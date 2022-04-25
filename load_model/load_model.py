@@ -484,7 +484,11 @@ def load_model(model_type):
 #         if k.startswith('module.) and not k.startswith('module.encoder_q.fc') :
 #             state_dict[k[len("module.encoder_q."):]] = state_dict[k]
 #         del state_dict[k]
-    msg = resnet.load_state_dict(state_dict, strict=False)
+    for k in list(state_dict.keys()):
+        if k.startswith('module'):
+            state_dict[k[len("module."):]] = state_dict[k]
+        del state_dict[k]
+    msg = resnet.load_state_dict(state_dict, strict=True)
     preprocess = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
