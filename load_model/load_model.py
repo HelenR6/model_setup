@@ -420,7 +420,15 @@ def load_model(model_type):
 
   if model_type=='l2_3':
     # pip install robustness
-    resnet = torch.load('/content/gdrive/MyDrive/imagenet_l2_3_0_model.pt') # https://drive.google.com/file/d/1SM9wnNr_WnkEIo8se3qd3Di50SUT9apn/view?usp=sharing 
+    resnet=models.resnet50(pretrained=False)
+    checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_l2_3_0.pt',map_location=torch.device('cuda') )
+    state_dict=checkpoint['model']
+    for k in list(state_dict.keys()):
+        if k.startswith('module.attacker.model.'):
+
+            state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
+        del state_dict[k]
+    resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
@@ -429,6 +437,7 @@ def load_model(model_type):
     mean=[0.485, 0.456, 0.406],
     std=[0.229, 0.224, 0.225])
     ])
+
   if model_type=='resnet50_l2_eps0.01' or model_type=='resnet50_l2_eps0.1' or model_type=='resnet50_l2_eps0.03' or model_type=='resnet50_l2_eps0.5' or model_type=='resnet50_l2_eps0.25' or model_type=='resnet50_l2_eps3' or model_type=='resnet50_l2_eps5' or model_type=='resnet50_l2_eps1'or model_type=='resnet50_l2_eps0.05':
     # pip install git+https://github.com/HelenR6/robustness
     from robustness.datasets import CIFAR,ImageNet
