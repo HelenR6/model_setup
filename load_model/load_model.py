@@ -414,7 +414,17 @@ def load_model(model_type):
 
   if model_type=='linf_8':
     # pip install robustness
-    resnet = torch.load('/content/gdrive/MyDrive/imagenet_linf_8_model.pt') # https://drive.google.com/file/d/1DRkIcM_671KQNhz1BIXMK6PQmHmrYy_-/view?usp=sharing
+#     resnet = torch.load('/content/gdrive/MyDrive/imagenet_linf_8_model.pt') # https://drive.google.com/file/d/1DRkIcM_671KQNhz1BIXMK6PQmHmrYy_-/view?usp=sharing
+    resnet=models.resnet50(pretrained=False)
+    checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_linf_8.pt',map_location=torch.device('cuda') )
+    state_dict=checkpoint['model']
+    for k in list(state_dict.keys()):
+        if k.startswith('module.attacker.model.'):
+
+            state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
+        del state_dict[k]
+    resnet.load_state_dict(state_dict)
+    
     preprocess = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
@@ -427,7 +437,15 @@ def load_model(model_type):
 
   if model_type=='linf_4':
     # pip install robustness
-    resnet = torch.load('/content/gdrive/MyDrive/robust_resnet.pt')#https://drive.google.com/file/d/1_tOhMBqaBpfOojcueSnYQRw_QgXdPVS6/view?usp=sharing
+    resnet=models.resnet50(pretrained=False)
+    checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_linf_4.pt',map_location=torch.device('cuda') )
+    state_dict=checkpoint['model']
+    for k in list(state_dict.keys()):
+        if k.startswith('module.attacker.model.'):
+
+            state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
+        del state_dict[k]
+    resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
