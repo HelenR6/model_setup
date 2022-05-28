@@ -5,6 +5,27 @@ from torchvision import transforms
 # from load_SIN_model import load_SIN_model
 
 def load_model(model_type):
+  if model_type=="moco_resnext50_32x8d":
+    # load checkpoints of moco
+    state_dict = torch.load('/content/gdrive/MyDrive/model_checkpoints/moco_resnext50_32x8d.pth.tar',map_location=torch.device('cpu'))['state_dict']
+#     resnet = models.resnet18(pretrained=False)
+    resnet=models.resnext50_32x8d(pretrained=False)
+    for k in list(state_dict.keys()):
+        if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc') :
+            state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+        del state_dict[k]
+    msg = resnet.load_state_dict(state_dict, strict=False)
+    # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
+    #preprocess for moco
+    preprocess = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(
+    mean=[0.485, 0.456, 0.406],
+    std=[0.229, 0.224, 0.225])
+    ])
+    
   if model_type=="wide_resnet50_4":
     state_dict = torch.load('/content/gdrive/MyDrive/model_checkpoints/wide_resnet50_4.pth.tar',map_location="cpu")['state_dict']
     resnet=models.wide_resnet50_4(pretrained=False)
