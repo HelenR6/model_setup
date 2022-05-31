@@ -139,7 +139,7 @@ def load_model(model_type):
     
   if model_type=="simclr":
     # load checkpoint for simclr
-    checkpoint = torch.load('/content/gdrive/MyDrive/resnet50-1x.pth')
+    checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/resnet50-1x.pth')
     resnet = models.resnet50(pretrained=False)
     resnet.load_state_dict(checkpoint['state_dict'])
     # preprocess images for simclr
