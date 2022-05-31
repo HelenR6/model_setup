@@ -18,8 +18,9 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -36,8 +37,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -54,8 +56,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -71,8 +74,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -88,8 +92,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -105,8 +110,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -122,8 +128,9 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+#     transforms.Resize(256),
+#     transforms.CenterCrop(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -137,8 +144,7 @@ def load_model(model_type):
     resnet.load_state_dict(checkpoint['state_dict'])
     # preprocess images for simclr
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(256),
+    transforms.Resize(224),
     transforms.ToTensor()
     ])
 
@@ -149,8 +155,8 @@ def load_model(model_type):
     resnet.load_state_dict(checkpoint['resnet'])
     # preprocess images for simclr
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(256),
+    transforms.Resize(224),
+
     transforms.ToTensor()
     ])
   if model_type=="moco_wide_resnet50":
@@ -166,8 +172,7 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -185,8 +190,7 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -224,8 +228,7 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -244,8 +247,8 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -265,8 +268,8 @@ def load_model(model_type):
     # assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for moco
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -285,8 +288,8 @@ def load_model(model_type):
     assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for mocov2
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+  
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -305,8 +308,7 @@ def load_model(model_type):
     assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for instance recoginition resnet
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -325,8 +327,7 @@ def load_model(model_type):
     assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
     #preprocess for place365-resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -338,8 +339,7 @@ def load_model(model_type):
     resnet=models.resnext101_32x8d(pretrained=True)
     #preprocess for resnext101
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -350,8 +350,8 @@ def load_model(model_type):
     resnet=models.resnet50(pretrained=False)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -362,8 +362,7 @@ def load_model(model_type):
     resnet=models.resnet101(pretrained=False)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -374,8 +373,8 @@ def load_model(model_type):
     resnet=models.wide_resnet50_2(pretrained=False)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -386,8 +385,7 @@ def load_model(model_type):
     resnet=models.wide_resnet101_2(pretrained=False)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -401,8 +399,7 @@ def load_model(model_type):
     resnet.load_state_dict(checkpoint)
     #preprocess for wsl resnext101
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -414,8 +411,7 @@ def load_model(model_type):
     resnet=models.resnet50(pretrained=True)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -426,8 +422,7 @@ def load_model(model_type):
     resnet=models.resnet101(pretrained=True)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -438,8 +433,7 @@ def load_model(model_type):
     resnet=models.resnet18(pretrained=True)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -450,8 +444,8 @@ def load_model(model_type):
     resnet=models.wide_resnet50_2(pretrained=True)
     #preprocess for st_resnet50
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+   
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -462,8 +456,8 @@ def load_model(model_type):
     resnet=models.wide_resnet101_2(pretrained=True)
     #preprocess for st_resnet101
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -475,8 +469,8 @@ def load_model(model_type):
     resnet=models.alexnet(pretrained=True)
     #preprocess for alexnet
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+ 
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -502,8 +496,8 @@ def load_model(model_type):
     resnet.load_state_dict(state_dict)
     
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+    
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -523,8 +517,8 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+    
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -544,8 +538,8 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+ 
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -560,8 +554,8 @@ def load_model(model_type):
     resnet, _ = make_and_restore_model(arch='resnet50', dataset=ds,
                 resume_path=f'/content/gdrive/MyDrive/model_checkpoints/{model_type}.ckpt')
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+    
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -584,8 +578,8 @@ def load_model(model_type):
         del state_dict[k]
     msg = resnet.load_state_dict(state_dict, strict=True)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -605,8 +599,8 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+   
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
@@ -627,8 +621,8 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
+    transforms.Resize(224),
+    
     transforms.ToTensor(),
     transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
