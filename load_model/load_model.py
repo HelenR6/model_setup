@@ -395,7 +395,7 @@ def load_model(model_type):
   if model_type=="wsl_resnext101":
     # load wsl resnext101
     resnet= models.resnext101_32x8d(pretrained=False)
-    checkpoint = torch.load("/content/gdrive/MyDrive/resent_wsl/ig_resnext101_32x8-c38310e5.pth")
+    checkpoint = torch.load("/content/gdrive/MyDrive/model_checkpoints/ig_resnext101_32x8-c38310e5.pth")
     resnet.load_state_dict(checkpoint)
     #preprocess for wsl resnext101
     preprocess = transforms.Compose([
