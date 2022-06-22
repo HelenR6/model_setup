@@ -257,7 +257,10 @@ def load_model(model_type):
     ])
   if model_type.split('_')[0]=="moco101":
     # load checkpoints of moco
-    epoch_num=model_type.split('_')[1]
+    if model_type != "moco101":
+      epoch_num=model_type.split('_')[1]
+    else:
+      epoch_num=200
     state_dict = torch.load(f'/content/gdrive/MyDrive/model_checkpoints/moco101/moco_{epoch_num}.pth.tar',map_location=torch.device('cpu'))['state_dict']
     resnet = models.resnet101(pretrained=False)
     for k in list(state_dict.keys()):
